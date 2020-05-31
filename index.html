@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="utf-8">
+	<title>Job Script Generator</title>
+	<link rel="stylesheet" type="text/css" href="BYUJobScriptGenerator.css">
+	<script type="text/javascript" src="BYUJobScriptGenerator.js"></script>
+</head>
+<body>
+<div id="BYUJobScriptGenerator"></div>
+
+<script type="text/javascript">
+	/* The latest version of the Brigham Young University Script Generator is available at http://github.com/BYUHPC/BYUJobScriptGenerator */
+
+	var byu_script_gen = new BYUScriptGen(document.getElementById("BYUJobScriptGenerator"));
+	
+	/* Dynamically generate this using PHP or whatever. You may also statically configure it */
+/*
+	byu_script_gen.settings.features = {
+		names : [
+			"amd", "avx", "ib", "intel", "m2050", "s1070", "sse4.1", "sse4.2"
+		],
+		info_base_url : "/documentation/features.html#",
+		show : true
+	};
+*/
+	byu_script_gen.settings.partitions = {
+		names : [
+		"CPU-Compute-1", "CPU-Compute-2", "GPU-Compute"
+		],
+		info_base_url : "/documentation/partitions.php?part=",
+		show : true
+	};
+	/* End of stuff */
+
+	/* Dynamically generate this using PHP or whatever. This can be omitted if you don't have the means to populate it */
+	byu_script_gen.settings.partitions_status = {
+		"CPU-Compute-1" : {"nodes_total" : 1,"cores_total" : 40},
+		"CPU-Compute-2" : {"nodes_total" : 1,"cores_total" : 40},
+		"GPU-Compute-3" :  {"nodes_total" : 2,"cores_total" : 40, "GPU_total" : 2},
+	};
+	/* End of dynamically generated stuff */
+
+	byu_script_gen.init();
+</script>
+
+<!-- Attribution is not required. Feel free to remove this. -->
+<div style="font-size: 10pt;">This Generator is written by Brigham Young University</div>
+
+</div>
+</body>
+</html>
