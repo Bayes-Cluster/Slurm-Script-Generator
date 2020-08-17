@@ -203,11 +203,11 @@ BYUScriptGen.prototype.createForm = function(doc) {
 	table.appendChild(this.returnNewRow("byu_sg_row_numgpus", "Number of GPUs: ", this.inputs.num_gpus));
 	table.appendChild(this.returnNewRow("byu_sg_row_mempercore", "Memory per processor core: ", this.newSpan(null, this.inputs.mem_per_core, this.inputs.mem_units)));
 	table.appendChild(this.returnNewRow("byu_sg_row_walltime", "Walltime: ", this.newSpan(null, this.inputs.wallhours, " hours ", this.inputs.wallmins, " mins ", this.inputs.wallsecs, " secs")));
-	table.appendChild(this.returnNewRow("byu_sg_row_testjob", "Job is a <b>test</b> job: ", this.inputs.is_test));
+	//table.appendChild(this.returnNewRow("byu_sg_row_testjob", "Job is a <b>test</b> job: ", this.inputs.is_test));
 	table.appendChild(this.returnNewRow("byu_sg_row_preemptable", "Job is preemptable: ", this.inputs.is_preemptable));
 	table.appendChild(this.formrows["is_requeueable"] = this.returnNewRow("byu_sg_row_requeueable", "Job is requeueable: ", this.inputs.is_requeueable));
 	this.formrows["is_requeueable"].style.display = "none";
-	table.appendChild(this.returnNewRow("byu_sg_row_fsgroup", "I am in a file sharing group and my group members need <br/>to read/modify my output files: ", this.inputs.in_group));
+	//table.appendChild(this.returnNewRow("byu_sg_row_fsgroup", "I am in a file sharing group and my group members need <br/>to read/modify my output files: ", this.inputs.in_group));
 	table.appendChild(this.formrows["group_name"] = this.returnNewRow("byu_sg_row_fsgroupname", "Group name (case sensitive): ", this.inputs.group_name));
 	this.formrows["group_name"].style.display = "none";
 	//table.appendChild(this.returnNewRow("byu_sg_row_needlicenses", "Need licenses? ", this.inputs.need_licenses));
@@ -445,7 +445,7 @@ BYUScriptGen.prototype.generateScriptSLURM = function () {
 		sbatch("--nodes=1   # number of nodes");
 	}
 
-	if(this.inputs.num_gpus.value > 0) {
+	if(this.inputs.num_gpus.value > -1) {
 		sbatch("--gres=gpu:" + this.inputs.num_gpus.value);
 	}
 
